@@ -46,12 +46,20 @@ static struct esp32_adc_channel_info s_chans[8] = {
     {.pin = 33, .ch = ADC1_CHANNEL_5, .atten = ADC_ATTEN_DB_11},
     {.pin = 34, .ch = ADC1_CHANNEL_6, .atten = ADC_ATTEN_DB_11},
     {.pin = 35, .ch = ADC1_CHANNEL_7, .atten = ADC_ATTEN_DB_11},
+    {.pin = 14, .ch = ADC1_CHANNEL_14, .atten = ADC_ATTEN_DB_11},
+    {.pin = 12, .ch = ADC1_CHANNEL_12, .atten = ADC_ATTEN_DB_11},
+    {.pin = 13, .ch = ADC1_CHANNEL_13, .atten = ADC_ATTEN_DB_11},
+    {.pin = 15, .ch = ADC1_CHANNEL_15, .atten = ADC_ATTEN_DB_11},
 };
 
 static struct esp32_adc_channel_info *esp32_adc_get_channel_info(int pin) {
   for (int i = 0; i < ARRAY_SIZE(s_chans); i++) {
-    if (s_chans[i].pin == pin) return &s_chans[i];
+    if (s_chans[i].pin == pin) {     
+        printf(">>>> ADC channel selected");
+        return &s_chans[i];
+    }
   }
+  printf(">>>> ADC channel select failed !");
   return NULL;
 }
 
